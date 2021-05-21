@@ -21,7 +21,7 @@ function whatIsHappening()
 }
 
 //defining variables and setting them to empty values
-$email = $street = $streetNumber = $city = $zipcode = "";
+/*$email = $street = $streetNumber = $city = $zipcode = "";
 
 //creating test_input function for data validation (protection against hackers)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,23 +37,24 @@ function test_input($data)
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}
+}*/
 
 //checking if input email is empty and if email is valid
 
-if (isset($_POST["submit"])) {
-    $email = $_POST["email"];
-    if (empty($email)) {
-        echo "You didn't fill in the e-mail";
-    } else {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Enter valid e-mail!";
-        } else {
-            echo "e-mail oke!";
-        }
 
+    if (isset($_POST["email"])) {
+        $email = $_POST["email"];
+        if (empty($email)) {
+            echo "You didn't fill in the e-mail";
+        } else {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "Enter valid e-mail!";
+            } else {
+                echo "e-mail oke!";
+            }
+
+        }
     }
-}
 
 
 //your products with their price.
@@ -75,3 +76,4 @@ $products = [
 $totalValue = 0;
 
 require 'form-view.php';
+whatIsHappening();
