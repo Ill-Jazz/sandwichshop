@@ -21,15 +21,42 @@ function whatIsHappening()
 }
 
 //defining variables and setting them to empty values
-/*$email = $street = $streetNumber = $city = $zipcode = "";
+$email = $street = $streetNum = $city = $zipcode = "";
+$emailErr = $streetErr = $streetNumErr = $cityErr = $zipcodeErr = "";
 
 //creating test_input function for data validation (protection against hackers)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = test_input($_POST["email"]);
-    $street = test_input($_POST["street"]);
-    $streetNumber = test_input($_POST["streetNumber"]);
-    $city = test_input($_POST["city"]);
-    $zipcode = test_input($_POST["zipcode"]);
+    if (empty($_POST["street"])){
+        $streetErr = "Street is required";
+    }else {
+        $street =test_input($_POST["street"]);
+        $streetErr = "";
+    }
+    if (empty($_POST["streetnumber"]) || (!is_numeric($_POST["streetnumber"]))){ //checking for empty field and numeric value
+        $streetNumErr = "Valid street number is required";
+    } else {
+        $streetNum = test_input($_POST["streetnumber"]);
+        $streetNumErr = "";
+    }
+    if (empty($_POST["email"])){
+        $emailErr = "Email is required";
+    }else {
+        $email = test_input($_POST["email"]);
+        $emailErr = "";
+    }
+    if (empty($_POST["city"])){
+        $cityErr = "City is required";
+    }else {
+        $city = test_input($_POST["city"]);
+        $cityErr = "";
+    }
+    if (empty($_POST["zipcode"]) || (!is_numeric($_POST["zipcode"]))){ //checking for empty field and numeric value
+        $zipcodeErr = "Valid zipcode is required";
+    }else {
+        $zipcode = test_input($_POST["zipcode"]);
+        $zipcodeErr = "";
+    }
+
 }
 function test_input($data)
 {
@@ -37,11 +64,8 @@ function test_input($data)
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}*/
-
-//checking if input email is empty and if email is valid
-
-
+}
+// check if e-mail is valid and not empty
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
         if (empty($email)) {
@@ -56,6 +80,12 @@ function test_input($data)
         }
     }
 
+//succes alert order sent if all fields are filled in and the streetnumber and zipcode are numeric
+if (!empty($_POST["email"]) && !empty($_POST["street"]) && !empty($_POST["streetnumber"]) && !empty($_POST["city"]) && !empty($_POST["zipcode"])) {
+ if (is_numeric($_POST["zipcode"]) && is_numeric($_POST["streetnumber"])){
+    echo "Order sent!";
+}
+ }
 
 //your products with their price.
 $products = [
