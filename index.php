@@ -87,6 +87,33 @@ if (!empty($_POST["email"]) && !empty($_POST["street"]) && !empty($_POST["street
 }
  }
 
+// create session
+
+if(!empty($_POST)) {
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["street"] = $_POST["street"];
+    $_SESSION["streetnumber"] = $_POST["streetnumber"];
+    $_SESSION["city"] = $_POST["city"];
+    $_SESSION["zipcode"] = $_POST["zipcode"];
+}
+
+if(!empty($_SESSION["email"])){
+    $email = $_SESSION["email"];
+}
+if(!empty($_SESSION["street"])){
+    $street = $_SESSION["street"];
+}
+if(!empty($_SESSION["streetnumber"])){
+    $streetNum = $_SESSION["streetnumber"];
+}
+if(!empty($_SESSION["city"])){
+    $city = $_SESSION["city"];
+}
+if(!empty($_SESSION["zipcode"])){
+    $zipcode = $_SESSION["zipcode"];
+}
+
+
 //your products with their price.
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
